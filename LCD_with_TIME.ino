@@ -14,6 +14,10 @@ int Sec;
 #define pmp1 26
 #define pmp2 27
 
+
+#define lamp1 39
+#define lamp2 41
+
 void setup() {
 
   lcd.begin(16,2);     
@@ -26,6 +30,17 @@ void setup() {
 //pump is off from the start
   digitalWrite(pmp1,HIGH);
   digitalWrite(pmp2,HIGH);
+
+
+//set pin for the lamp
+  pinMode(lamp1,OUTPUT);
+  pinMode(lamp2,OUTPUT);
+
+//lamp is off from the start
+  digitalWrite(lamp1,HIGH);
+  digitalWrite(lamp2,HIGH);
+
+  
   
   Wire.begin();
   Serial.begin(9600);
@@ -34,9 +49,9 @@ void setup() {
 
 //  rtc.setDOW(SATURDAY);     // Set Day-of-Week to SUNDAY
 //
-//  rtc.setTime(18, 30, 00);     // Set the time to 12:00:00 (24hr format)
+//  rtc.setTime(19, 48, 00);     // Set the time to 12:00:00 (24hr format)
 //
-//  rtc.setDate(26, 11, 2017);   // Set the date to January 1st, 2014
+//  rtc.setDate(16, 12, 2017);   // Set the date to January 1st, 2014
 
 
 }
@@ -74,7 +89,7 @@ void loop() {
   Hor = t.hour;
   Min = t.min;
   Sec = t.sec;
- if( Hor == 14 &&  (Min == 16 || Min == 17) && (Sec > 55)) //Comparing the current time with the Alarm time
+ if( Hor == 20 &&  (Min == 2 || Min == 3) && (Sec > 30)) //Comparing the current time with the Alarm time
 
       {
       lcd.clear();
@@ -87,6 +102,7 @@ void loop() {
       lcd.print(millis() / 1000);
       
       Pump();
+      Lamp();
       }else {      
 //swithch the pump off again when the time pass  
       digitalWrite(pmp1,HIGH);
@@ -108,4 +124,18 @@ digitalWrite(pmp1, LOW);
 digitalWrite(pmp2, LOW);
 
 delay(500);
+}
+
+//controling the lamp
+void Lamp(){
+
+digitalWrite(lamp1,HIGH);
+digitalWrite(lamp2,HIGH);
+
+delay(1500);
+
+digitalWrite(lamp1, LOW);
+digitalWrite(lamp2, LOW);
+
+delay(1500);
 }
