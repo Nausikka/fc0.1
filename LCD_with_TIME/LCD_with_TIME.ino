@@ -28,8 +28,8 @@ void setup() {
   pinMode(pmp2,OUTPUT);
 
 //pump is off from the start
-  digitalWrite(pmp1,HIGH);
-  digitalWrite(pmp2,HIGH);
+  digitalWrite(pmp1,LOW);
+  digitalWrite(pmp2,LOW);
 
 
 //set pin for the lamp
@@ -49,9 +49,9 @@ void setup() {
 
 //  rtc.setDOW(SATURDAY);     // Set Day-of-Week to SUNDAY
 //
-//  rtc.setTime(19, 48, 00);     // Set the time to 12:00:00 (24hr format)
+//  rtc.setTime(22, 05, 00);     // Set the time to 12:00:00 (24hr format)
 //
-//  rtc.setDate(16, 12, 2017);   // Set the date to January 1st, 2014
+//  rtc.setDate(23, 12, 2017);   // Set the date to January 1st, 2014
 
 
 }
@@ -89,7 +89,7 @@ void loop() {
   Hor = t.hour;
   Min = t.min;
   Sec = t.sec;
- if( Hor == 20 &&  (Min == 2 || Min == 3) && (Sec > 30)) //Comparing the current time with the Alarm time
+ if( Hor == 17 &&  (Min == 15) && (Sec > 50)) //Comparing the current time with the Alarm time
 
       {
       lcd.clear();
@@ -103,10 +103,31 @@ void loop() {
       
       Pump();
       Lamp();
+      
       }else {      
 //swithch the pump off again when the time pass  
       digitalWrite(pmp1,HIGH);
       digitalWrite(pmp2,HIGH);
+      
+      }
+      if( Hor == 17 &&  (Min > 20) ) //Comparing the current time with the Alarm time
+
+      {
+      lcd.clear();
+      
+      lcd.print("Lampa");
+      
+      lcd.setCursor(0,1);
+      
+      lcd.print("Svieti: ");
+      lcd.print(millis() / 1000);
+      
+      Lamp();
+      
+      }else {      
+//swithch the pump off again when the time pass  
+      digitalWrite(lamp1,HIGH);
+      digitalWrite(lamp2,HIGH);
       
       }
 }
@@ -129,13 +150,7 @@ delay(500);
 //controling the lamp
 void Lamp(){
 
-digitalWrite(lamp1,HIGH);
-digitalWrite(lamp2,HIGH);
-
-delay(1500);
-
 digitalWrite(lamp1, LOW);
 digitalWrite(lamp2, LOW);
 
-delay(1500);
 }
