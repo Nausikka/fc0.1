@@ -89,7 +89,7 @@ void loop() {
   Hor = t.hour;
   Min = t.min;
   Sec = t.sec;
- if( Hor == 17 &&  (Min == 15) && (Sec > 50)) //Comparing the current time with the Alarm time
+ if( Hor == 21 &&  (Min == 39) && (Sec > 00)) //Comparing the current time with the Alarm time
 
       {
       lcd.clear();
@@ -102,7 +102,7 @@ void loop() {
       lcd.print(millis() / 1000);
       
       Pump();
-      Lamp();
+//      Lamp();
       
       }else {      
 //swithch the pump off again when the time pass  
