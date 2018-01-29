@@ -99,11 +99,30 @@ void loop() {
       lcd.print(millis() / 1000);
       
       Pump();
-      Lamp();
       }else {      
 //swithch the pump off again when the time pass  
       digitalWrite(pmp1,HIGH);
       digitalWrite(pmp2,HIGH);
+      
+  }
+
+  if( Hor >= 8 &&  (Min >= 27) ) //Comparing the current time with the Alarm time
+
+      {
+      lcd.clear();
+      
+      lcd.print("Svieti");
+      
+      lcd.setCursor(0,1);
+      
+      lcd.print("Svieti: ");
+      lcd.print(millis() / 1000);
+      
+      Lamp();
+      }else {      
+//swithch the lamp off again when the time pass  
+      digitalWrite(lamp1,HIGH);
+      digitalWrite(lamp2,HIGH);
       
   }
 }
@@ -126,13 +145,6 @@ void Lamp(){
 
 digitalWrite(lamp1, LOW);
 digitalWrite(lamp2, LOW);
-delay(10000);
-
-digitalWrite(lamp1, HIGH);
-digitalWrite(lamp2, HIGH);
-delay(5000);
-
-
 }
 
 
