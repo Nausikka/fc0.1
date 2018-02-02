@@ -1,2 +1,2 @@
 # fc0.1
-Streamline version of Food Computer
+Very Streamlined version of Food Computer from MIT
