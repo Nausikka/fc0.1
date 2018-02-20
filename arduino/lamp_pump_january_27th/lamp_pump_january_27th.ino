@@ -88,7 +88,7 @@ void loop() {
   Hor = t.hour;
   Min = t.min;
   Sec = t.sec;
- if( Hor == 8 && Min == 19 ) //Comparing the current time with the Alarm time
+ if( Hor == 11 && Min == 10 ) //Comparing the current time with the Alarm time
 
       {
       
@@ -100,7 +100,7 @@ void loop() {
       
   }
 
-  if( Hor >= 19 && Hor < 21) //Comparing the current time with the Alarm time
+  if( Hor >= 11 && Hor <= 12) //Comparing the current time with the Alarm time
 
       {
       lcd.clear();
@@ -132,5 +132,4 @@ void Lamp(){
 digitalWrite(lamp1, HIGH);
 digitalWrite(lamp2, HIGH);
 }
-
 
