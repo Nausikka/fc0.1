@@ -71,7 +71,7 @@ void loop() {
   Serial.println("Sec " +  Sec );
   
 //switch the pump on from at 15:50 for 8 minutes
-  if( Hor == 17 && (Min >  && Min < 40)) {
+  if( Hor == 17 && (Min > 50  && Min < 55)) {
     //pump start
   digitalWrite(pmp1, LOW);
   digitalWrite(pmp2, LOW);  
@@ -81,13 +81,13 @@ void loop() {
   }
   
  //switch the lamp on from 7:00 - 15:00
-//    if( Hor >= 7 && Hor < 15 ) {
-//      
-//  digitalWrite(lamp1, HIGH);
-//  digitalWrite(lamp2, HIGH);
-//    }else {
-//      digitalWrite(lamp1, LOW);
-//      digitalWrite(lamp2, LOW);
-//    }
+    if( Hor >= 17 && Hor < 19 ) {
+      
+  digitalWrite(lamp1, HIGH);
+  digitalWrite(lamp2, HIGH);
+    }else {
+      digitalWrite(lamp1, LOW);
+      digitalWrite(lamp2, LOW);
+    }
 }
 
