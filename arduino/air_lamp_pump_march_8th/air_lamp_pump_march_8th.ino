@@ -14,12 +14,12 @@ int Hor;
 int Min;
 int Sec;
 
-#define pmp1 8
-#define pmp2 9
+#define pmp1 26
+#define pmp2 27
 
 
-#define pmp_air 3
-#define lamp 2
+#define pmp_air 39
+#define lamp 41
 
 
 void setup() {
@@ -31,11 +31,11 @@ void setup() {
 
   ////The following lines can be uncommented to set the date and time
 
-//  rtc.setDOW(SATURDAY);     // Set Day-of-Week to SUNDAY
-//
-//  rtc.setTime(8, 57, 00);     // Set the time to 12:00:00 (24hr format)
-//
-//  rtc.setDate(3, 3, 2018);   // Set the date to January 1st, 2014
+  rtc.setDOW(SATURDAY);     // Set Day-of-Week to SUNDAY
+
+  rtc.setTime(21, 49, 00);     // Set the time to 12:00:00 (24hr format)
+
+  rtc.setDate(8, 3, 2018);   // Set the date to January 1st, 2014
   //set pin for the pump
   pinMode(pmp1,OUTPUT);
   pinMode(pmp2,OUTPUT);
@@ -92,7 +92,7 @@ void loop() {
   Hor = t.hour;
   Min = t.min;
   Sec = t.sec;
- if( (Hor == 20 || Hor == 8) && (Min >  34 && Min < 45)) //Comparing the current time with the Alarm time
+ if( (Hor == 21 || Hor == 8) && (Min >  48 && Min < 54)) //Comparing the current time with the Alarm time
       {
        digitalWrite(pmp1,LOW);
        digitalWrite(pmp2,LOW);
@@ -102,7 +102,7 @@ void loop() {
       digitalWrite(pmp2,HIGH);     
   }
 
-  if( (Hor == 20 || Hor == 8) &&  (Min > 35  && Min < 45) ) //Comparing the current time with the Alarm time
+  if( (Hor == 21 || Hor == 8) &&  (Min > 49  && Min < 53) ) //Comparing the current time with the Alarm time
 
       {
       digitalWrite(lamp, LOW);
@@ -112,7 +112,7 @@ void loop() {
       digitalWrite(lamp,HIGH);
       
   }
-   if( (Hor == 20 || Hor == 8) &&  (Min > 36  && Min < 45) ) //Comparing the current time with the Alarm time
+   if( (Hor == 21 || Hor == 8) &&  (Min > 50  && Min < 55) ) //Comparing the current time with the Alarm time
 
       {
       digitalWrite(pmp_air, LOW);
