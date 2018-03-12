@@ -14,19 +14,16 @@ int Hor;
 int Min;
 int Sec;
 
-#define pmp1 26
-#define pmp2 27
-
-
-#define pmp_air 39
-#define lamp 41
+#define water 26
+#define lamp 39
+#define air 41
 
 
 void setup() {
   // set up the LCD's number of columns and rows:
   lcd.begin(16, 2);
   rtc.begin();
-  Serial.print("Running:lamp_pump_feb_24.ino");
+
 
 
   ////The following lines can be uncommented to set the date and time
@@ -36,24 +33,17 @@ void setup() {
 //  rtc.setTime(7, 11, 00);     // Set the time to 12:00:00 (24hr format)
 //
 //  rtc.setDate(8, 3, 2018);   // Set the date to January 1st, 2014
-//  //set pin for the pump
-  pinMode(pmp1,OUTPUT);
-  pinMode(pmp2,OUTPUT);
+//
 
-//pump is off from the start
-digitalWrite(pmp1,HIGH);
-digitalWrite(pmp2,HIGH);
-
-//set pin for the air pump   
-  pinMode(pmp_air,OUTPUT);
-
-//set pin for the lamp   
-  pinMode(lamp,OUTPUT);  
-
-//air pump is off from the start
-  digitalWrite(pmp_air,HIGH);
+//set pin for the pump, air pump and the lamp
   
-//lamp is off from the start
+  pinMode(water,OUTPUT);
+  pinMode(air,OUTPUT);
+  pinMode(lamp,OUTPUT);
+
+//all devices are off from the start
+  digitalWrite(water,HIGH);
+  digitalWrite(air,HIGH);
   digitalWrite(lamp,HIGH);
 
   Wire.begin();
@@ -61,7 +51,13 @@ digitalWrite(pmp2,HIGH);
 }
 
 void loop() {
-  //print on Serial monitor  
+
+  
+  //print on Serial monitor script which is running
+  lcd.setCursor(0,0);
+  Serial.print("lamp_pump_march_10.ino");
+  delay (5000);
+  
   Serial.print("Date: ");
   Serial.print(rtc.getDOWStr());
   
@@ -92,34 +88,28 @@ void loop() {
   Hor = t.hour;
   Min = t.min;
   Sec = t.sec;
- if( (Hor == 22 || Hor == 7) && (Min >  41 && Min < 48)) //Comparing the current time with the Alarm time
+ if( (Hor == 8) && (Min >  10 && Min < 12)) //Comparing the current time with the Alarm time
       {
-       digitalWrite(pmp1,LOW);
-       digitalWrite(pmp2,LOW);
+       digitalWrite(water,LOW);
       }else {      
-//swithch the pump off again when the time pass  
-      digitalWrite(pmp1,HIGH);
-      digitalWrite(pmp2,HIGH);     
-  }
+      digitalWrite(water,HIGH);         
+      }
 
-  if( (Hor == 22 || Hor == 7) &&  (Min > 42  && Min < 48) ) //Comparing the current time with the Alarm time
+//set time for the air
 
+  if( (Hor == 19 || Hor==14 || Hor == 8) &&  (Min > 0  && Min < 10) ) 
+      {
+      digitalWrite(air, LOW);
+      }else {      
+      digitalWrite(air,HIGH);
+      }
+
+//set time for the lamp
+if(  Hor >= 7 && Hor < 18 ) 
       {
       digitalWrite(lamp, LOW);
-
       }else {      
-//swithch the lamp off again when the time pass  
-      digitalWrite(lamp,HIGH);
-      
-  }
-   if( (Hor == 22 || Hor == 7) &&  (Min > 43  && Min < 48) ) //Comparing the current time with the Alarm time
-
-      {
-      digitalWrite(pmp_air, LOW);
-
-      }else {      
-      digitalWrite(pmp_air, HIGH);
-      
-  }
+      digitalWrite(lamp, HIGH);   
+      }
 }
 
