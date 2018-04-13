@@ -30,9 +30,9 @@ void setup() {
 
 //  rtc.setDOW(SATURDAY);     // Set Day-of-Week to SUNDAY
 //
-//  rtc.setTime(7, 11, 00);     // Set the time to 12:00:00 (24hr format)
+//  rtc.setTime(21, 13, 00);     // Set the time to 12:00:00 (24hr format)
 //
-//  rtc.setDate(8, 3, 2018);   // Set the date to January 1st, 2014
+//  rtc.setDate(10, 4, 2018);   // Set the date to January 1st, 2014
 //
 
 //set pin for the pump, air pump and the lamp
@@ -90,7 +90,7 @@ void loop() {
   Sec = t.sec;
 
   //set time for water: once per day for 1 minute
- if( (Hor == 8) && (Min >  10 && Min < 12)) //Comparing the current time with the Alarm time
+ if( (Hor == 8) && (Min >  2 && Min < 4)) //Comparing the current time with the Alarm time
       {
        digitalWrite(water,LOW);
       }else {      
@@ -99,7 +99,7 @@ void loop() {
 
 //set time for the air: 3x per day for 10min
 
-  if( (Hor == 19 || Hor==14 || Hor == 8) &&  (Min > 0  && Min < 10) ) 
+  if( (Hor == 18 || Hor==14 || Hor == 7) &&  (Min > 0  && Min < 5) ) 
       {
       digitalWrite(air, LOW);
       }else {      
