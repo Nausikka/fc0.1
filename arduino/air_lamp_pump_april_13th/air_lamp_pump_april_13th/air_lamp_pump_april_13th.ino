@@ -14,9 +14,11 @@ int Hor;
 int Min;
 int Sec;
 
+#define fan 27
 #define water 26
 #define lamp 39
 #define air 41
+
 
 
 void setup() {
@@ -36,12 +38,13 @@ void setup() {
 //
 
 //set pin for the pump, air pump and the lamp
-  
+  pinMode(fan,OUTPUT);
   pinMode(water,OUTPUT);
   pinMode(air,OUTPUT);
   pinMode(lamp,OUTPUT);
 
 //all devices are off from the start
+  digitalWrite(fan,HIGH);
   digitalWrite(water,HIGH);
   digitalWrite(air,HIGH);
   digitalWrite(lamp,HIGH);
@@ -89,6 +92,17 @@ void loop() {
   Min = t.min;
   Sec = t.sec;
 
+ //set time for fan: twice per day for 2 minute
+ if( (Hor == 11 || Hor == 15 || Hor== 18) && (Min >  2 && Min < 5)) //Comparing the current time with the Alarm time
+      {
+       digitalWrite(water,LOW);
+      }else {      
+      digitalWrite(water,HIGH);         
+      }
+
+  
+  
+  
   //set time for water: once per day for 1 minute
  if( (Hor == 8) && (Min >  2 && Min < 4)) //Comparing the current time with the Alarm time
       {
